@@ -1,0 +1,1 @@
+python C:\Users\taoka\Desktop\program\python\main\left_click\line.py
