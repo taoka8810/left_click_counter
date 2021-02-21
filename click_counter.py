@@ -4,9 +4,8 @@
 
 import ctypes, sys
 import openpyxl as px
-from datetime import date, datetime
+from datetime import datetime
 
-today=date.today()
 wb=px.Workbook()
 ws=wb.worksheets[0]
 ws.cell(row=1, column=1).value=0
@@ -17,8 +16,9 @@ while True:
     #23:58にプログラムを停止する    
     now=datetime.now()
     if now.hour==23:
-        if now.minute==58:
-            sys.exit()
+        if now.minute==59:
+            if now.second==40:
+                sys.exit()
     #左クリックを検知、Excelファイルに記録
     if ctypes.windll.user32.GetAsyncKeyState(0x01)==0x8000:
         while True:
@@ -26,7 +26,7 @@ while True:
                 counter+=1
                 x=ws.max_row+1
                 ws.cell(row=x, column=1).value=counter
-                wb.save(str(today)+".xlsx")
+                wb.save("record.xlsx")
                 print("ファイルに書き込みました:"+str(counter)+"回目")
                 break
 
